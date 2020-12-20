@@ -1,0 +1,31 @@
+{
+    "family": "serving-cpu",
+    "executionRoleArn": "ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "serving-cpu",
+            "image": "<AWS Account ID>.dkr.ecr.<Region Name>.amazonaws.com/serving-cpu:latest",
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 8500,
+                    "hostPort": 8500,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/serving-cpu",
+                    "awslogs-region": "<Region Name>",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ]
+}

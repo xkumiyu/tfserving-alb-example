@@ -1,0 +1,26 @@
+{
+    "cluster": "tfserving-alb-example",
+    "serviceName": "serving-cpu-with-alb",
+    "taskDefinition": "serving-cpu:1",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:<Region Name>:<AWS Account ID>:targetgroup/serving/example",
+            "containerName": "serving-cpu",
+            "containerPort": 8500
+        }
+    ],
+    "launchType": "EC2",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "securityGroups": [
+                "sg-11111111111111111"
+            ],
+            "subnets": [
+                "subnet-11111111111111111",
+                "subnet-22222222222222222"
+            ],
+            "assignPublicIp": "DISABLED"
+        }
+    },
+    "desiredCount": 1
+}
